@@ -1,5 +1,3 @@
-## 📊 Credit Risk Analytics Dashboard
-
 <img width="932" height="713" alt="Screenshot 2026-06-23 130309" src="https://github.com/user-attachments/assets/e2669b43-2d48-425a-868c-b1aa70c131bf" />
 <img width="946" height="692" alt="Screenshot 2026-06-23 130334" src="https://github.com/user-attachments/assets/4fc42f28-ab77-4fe4-932b-6598381247cd" />
 
