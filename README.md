@@ -1,4 +1,4 @@
-📊 Credit Risk Analytics Dashboard
+## 📊 Credit Risk Analytics Dashboard
 
 <img width="932" height="713" alt="Screenshot 2026-06-23 130309" src="https://github.com/user-attachments/assets/e2669b43-2d48-425a-868c-b1aa70c131bf" />
 <img width="946" height="692" alt="Screenshot 2026-06-23 130334" src="https://github.com/user-attachments/assets/4fc42f28-ab77-4fe4-932b-6598381247cd" />
@@ -17,7 +17,7 @@ Using a dataset of **29,000+ real-world loan records** (modeled on LendingClub-s
 - Measures key credit risk ratios — DTI, LTI, LPI, and Credit Utilization
 - Delivers prescriptive recommendations to reduce portfolio-level default exposure
 
-  ## 🎯 Business Objectives
+## 🎯 Business Objectives
 
 | # | Objective | Business Impact |
 |---|-----------|----------------|
@@ -26,7 +26,6 @@ Using a dataset of **29,000+ real-world loan records** (modeled on LendingClub-s
 | 3 | Monitor DTI, LTI & credit utilization ratios | Tighten lending criteria for risky segments |
 | 4 | Segment borrowers by income, employment & purpose | Enable targeted risk-based pricing |
 | 5 | Provide prescriptive actions for risk mitigation | Support credit committee decision-making |
-
 
 ## 🗃️ Dataset Details
 
@@ -49,29 +48,6 @@ Using a dataset of **29,000+ real-world loan records** (modeled on LendingClub-s
 | **Credit Utilization** | Revolving balance ÷ Revolving limit | How much credit is being used? |
 | **Variance Badge** | Current default rate − Benchmark rate | Are we above or below expected risk? |
 
-### DAX Measures Developed
-
-```dax
--- Overall Default Rate
-Default Rate = 
-DIVIDE(
-    COUNTROWS(FILTER(Credit_Risk_Table, Credit_Risk_Table[loan_status] = "Default")),
-    COUNTROWS(Credit_Risk_Table),
-    0
-) * 100
-
--- DTI Bucket (Calculated Column)
-DTI Bucket = 
-SWITCH(TRUE(),
-    Credit_Risk_Table[dti] < 10, "Low (<10%)",
-    Credit_Risk_Table[dti] < 20, "Moderate (10–20%)",
-    Credit_Risk_Table[dti] < 35, "High (20–35%)",
-    "Very High (35%+)"
-)
-
--- Default Rate vs Benchmark
-Variance Badge = [Default Rate] - [Benchmark Default Rate]
-```
 
 ### Key Fields Used
 
