@@ -37,6 +37,42 @@ Using a dataset of **29,000+ real-world loan records** (modeled on LendingClub-s
 | **Source Style** | LendingClub-style open banking dataset |
 | **Format** | Structured tabular data (CSV → Power BI) |
 
+## 📐 Key Metrics & KPIs
+
+### Credit Risk Ratios (DAX Calculated)
+
+| Metric | Formula (Plain English) | What It Tells You |
+|--------|------------------------|-------------------|
+| **Default Rate** | Defaulted loans ÷ Total loans × 100 | % of borrowers who failed to repay |
+| **DTI Ratio** | Monthly debt payments ÷ Monthly income | How burdened is the borrower's income? |
+| **LTI Ratio** | Loan amount ÷ Annual income | Is the loan too large for the borrower? |
+| **Credit Utilization** | Revolving balance ÷ Revolving limit | How much credit is being used? |
+| **Variance Badge** | Current default rate − Benchmark rate | Are we above or below expected risk? |
+
+### DAX Measures Developed
+
+```dax
+-- Overall Default Rate
+Default Rate = 
+DIVIDE(
+    COUNTROWS(FILTER(Credit_Risk_Table, Credit_Risk_Table[loan_status] = "Default")),
+    COUNTROWS(Credit_Risk_Table),
+    0
+) * 100
+
+-- DTI Bucket (Calculated Column)
+DTI Bucket = 
+SWITCH(TRUE(),
+    Credit_Risk_Table[dti] < 10, "Low (<10%)",
+    Credit_Risk_Table[dti] < 20, "Moderate (10–20%)",
+    Credit_Risk_Table[dti] < 35, "High (20–35%)",
+    "Very High (35%+)"
+)
+
+-- Default Rate vs Benchmark
+Variance Badge = [Default Rate] - [Benchmark Default Rate]
+```
+
 ### Key Fields Used
 
 | Field | Description | Plain English |
